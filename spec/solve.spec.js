@@ -1,6 +1,6 @@
 var solve = require('..').solve;
 
-describe('solve', function() {
+describe('solve all tasks', function() {
 	it('should solve zero elements', function() {
 		expect(solve({})).toEqual([]);
 	});
@@ -40,5 +40,22 @@ describe('solve', function() {
 		};
 
 		expect(function() { solve(graph); }).toThrow();
+	});
+});
+
+describe('solve specific task with dependencies', function() {
+	it('should not do unnecessary dependencies', function() {
+		var tasks = {
+			buildAll: ['docs'],
+			build: ['compile', 'postprocess'],
+			test: ['build'],
+			compile: ['preprocess'],
+			clean: [],
+			docs: ['preprocess'],
+			preprocess: [],
+			postprocess: []
+		}
+
+		expect(solve(tasks, 'test')).toEqual(['postprocess', 'preprocess', 'compile', 'build', 'test']);
 	});
 });
