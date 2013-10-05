@@ -8,5 +8,8 @@
   },
   "repository": "",
   "author": "",
-  "license": "BSD"
+  "license": "BSD",
+  "devDependencies": {
+    "jasmine-node": "~1.11.0"
+  }
 }
