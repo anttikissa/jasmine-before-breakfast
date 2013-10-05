@@ -11,4 +11,12 @@ describe('solve', function() {
 		};
 		expect(solve(graph)).toEqual(['element']);
 	});
+
+	it('should solve two elements', function() {
+		var graph = {
+			a: ['b'],
+			b: []
+		};
+		expect(solve(graph)).toEqual(['b', 'a']);
+	});
 });
