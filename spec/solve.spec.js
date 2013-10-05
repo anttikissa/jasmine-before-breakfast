@@ -1,7 +1,7 @@
 var solve = require('..').solve;
 
 describe('solve', function() {
-	it('should return empty', function() {
+	it('should solve zero elements', function() {
 		expect(solve({})).toEqual([]);
 	});
 
