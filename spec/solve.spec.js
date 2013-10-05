@@ -19,4 +19,17 @@ describe('solve', function() {
 		};
 		expect(solve(graph)).toEqual(['b', 'a']);
 	});
+
+	it('should solve a more complex graph', function() {
+		var graph = {
+			a: ['b', 'c'],
+			b: ['e', 'f', 'd'],
+			c: ['b'],
+			d: ['e', 'f'],
+			e: [],
+			f: ['e']
+		};
+
+		expect(solve(graph)).toEqual(['e', 'f', 'd', 'b', 'c', 'a']);
+	});
 });
