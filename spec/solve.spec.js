@@ -44,6 +44,9 @@ describe('solve all tasks', function() {
 });
 
 describe('solve specific task with dependencies', function() {
+	// TODO a makefile-style task list is not the best possible example.
+	// Dependencies are not ordered and this causes 'postprocess'
+	// to come before 'preprocess', which is a bit silly.
 	it('should not do unnecessary dependencies', function() {
 		var tasks = {
 			buildAll: ['docs'],
