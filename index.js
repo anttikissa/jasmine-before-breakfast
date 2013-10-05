@@ -20,23 +20,23 @@ module.exports = {
 		while (_.keys(graph).length > 0) {
 
 			var zeroDeps = [];
-			// find nodes with zero dependencies and put them aside into 'zeroDeps'
+			// Find nodes with zero dependencies and put them aside into `zeroDeps`.
 			for (var node in graph) {
 				if (graph[node].length == 0) {
 					zeroDeps.push(node);
 				}
 			}
 
-			// For each node with zero dependencies
+			// For each node with zero dependencies...
 			for (var i = 0; i < zeroDeps.length; i++) {
 
-				// push it into the result
+				// ...push it into the result...
 				var node = zeroDeps[i];
 				order.push(node);
 
-				// and remove it from the graph
+				// ...and remove it from the graph.
 				delete graph[node];
-				// Then remove 'node' from the dependencies of remaining nodes.
+				// Then remove `node` from the dependencies of remaining nodes.
 				for (var existingNode in graph) {
 					graph[existingNode] = _.without(graph[existingNode], node);
 				}
