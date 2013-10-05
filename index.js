@@ -1,5 +1,34 @@
 var _ = require('underscore');
 
+// Graph utilities
+//
+// A graph is an object.
+// Its keys represent its nodes, and its values represents its edges.
+// Graphs are directed.
+//
+// Example:
+//
+// { a: [b, c], b: [a], c: [] };
+//
+// represents the graph
+//
+// a <--> b
+// |
+// v
+// c
+Graph = {
+
+	// Remove `node` from `graph`.
+	remove: function(graph, node) {
+		delete graph[node];
+
+		// Then remove `node` from the dependencies of remaining nodes.
+		for (var n in graph) {
+			graph[n] = _.without(graph[n], node);
+		}
+	}
+};
+
 module.exports = {
 
 	// solve(graph) -> [nodes]
@@ -39,11 +68,7 @@ module.exports = {
 				order.push(node);
 
 				// ...and remove it from the graph.
-				delete graph[node];
-				// Then remove `node` from the dependencies of remaining nodes.
-				for (var existingNode in graph) {
-					graph[existingNode] = _.without(graph[existingNode], node);
-				}
+				Graph.remove(graph, node);
 			}
 		}
 
