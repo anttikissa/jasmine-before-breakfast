@@ -27,9 +27,13 @@ module.exports = {
 				}
 			}
 
+			// If there aren't any nodes without dependencies, we have a cycle.
+			if (zeroDeps.length == 0) {
+				throw Error('Detected cyclical dependency: ' + JSON.stringify(graph));
+			}
+
 			// For each node with zero dependencies...
 			for (var i = 0; i < zeroDeps.length; i++) {
-
 				// ...push it into the result...
 				var node = zeroDeps[i];
 				order.push(node);
