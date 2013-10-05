@@ -32,4 +32,13 @@ describe('solve', function() {
 
 		expect(solve(graph)).toEqual(['e', 'f', 'd', 'b', 'c', 'a']);
 	});
+
+	it('should detect cyclical dependencies', function() {
+		var graph = {
+			a: 'b',
+			b: 'a'
+		};
+
+		expect(function() { solve(graph); }).toThrow();
+	});
 });
