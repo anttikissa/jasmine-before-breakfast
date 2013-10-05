@@ -1,16 +1,48 @@
+var _ = require('underscore');
+
 module.exports = {
 
-	// Solve graph dependencies
+	// solve(graph) -> [nodes]
+	//
+	// Solve graph dependencies.
+	// Will destroy `graph` in the process.
 	//
 	// Example:
 	//
-	// 'a' depends on 'c', 'c' depends on 'b'
-	// { a: ['b'], b: [], c: ['b'] } -> ['b', 'c', 'a']
+	// `a` depends on `c`, `c` depends on `b`.
+	//
+	// `solve({ a: ['b'], b: [], c: ['b'] })` -> `['b', 'c', 'a']`
+	//
 	solve: function(graph) {
 		var order = [];
-		for (node in graph) {
-			order.push(node);
+
+		// While graph still has nodes left...
+		while (_.keys(graph).length > 0) {
+
+			var zeroDeps = [];
+			// find nodes with zero dependencies and put them aside into 'zeroDeps'
+			for (var node in graph) {
+				if (graph[node].length == 0) {
+					zeroDeps.push(node);
+				}
+			}
+
+			// For each node with zero dependencies
+			for (var i = 0; i < zeroDeps.length; i++) {
+
+				// push it into the result
+				var node = zeroDeps[i];
+				order.push(node);
+
+				// and remove it from the graph
+				delete graph[node];
+				// Then remove 'node' from the dependencies of remaining nodes.
+				for (var existingNode in graph) {
+					graph[existingNode] = _.without(graph[existingNode], node);
+				}
+			}
 		}
+
 		return order;
 	}
 };

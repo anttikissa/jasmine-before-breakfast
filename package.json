@@ -11,5 +11,8 @@
   "license": "BSD",
   "devDependencies": {
     "jasmine-node": "~1.11.0"
+  },
+  "dependencies": {
+    "underscore": "~1.5.2"
   }
 }
