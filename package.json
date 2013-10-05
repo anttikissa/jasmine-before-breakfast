@@ -1,0 +1,12 @@
+{
+  "name": "jasmine-before-breakfast",
+  "version": "0.0.0",
+  "description": "Learning Jasmine by doing a simple dependency solver",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "",
+  "license": "BSD"
+}
