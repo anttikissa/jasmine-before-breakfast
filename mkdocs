@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# First do:
+#
+# npm install -g docco
+
+docco index.js
