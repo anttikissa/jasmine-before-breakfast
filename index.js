@@ -8,14 +8,14 @@ var _ = require('underscore');
 //
 // Example:
 //
-// { a: [b, c], b: [a], c: [] };
+// 	{ a: [b, c], b: [a], c: [] };
 //
 // represents the graph
 //
-// a <--> b
-// |
-// v
-// c
+// 	a <--> b
+// 	|
+// 	v
+// 	c
 Graph = {
 
 	// Remove `node` from `graph`.
@@ -39,7 +39,7 @@ Graph = {
 // `a` depends on `c`, `c` depends on `b`.
 //
 // `solve({ a: ['b'], b: [], c: ['b'] })` -> `['b', 'c', 'a']`
-//
+
 function solve(graph, startNode) {
 	if (startNode != null) {
 		graph = prune(graph, startNode);
@@ -60,7 +60,8 @@ function solve(graph, startNode) {
 
 		// If there aren't any nodes without dependencies, we have a cycle.
 		if (zeroDeps.length == 0) {
-			throw Error('Detected cyclical dependency: ' + JSON.stringify(graph));
+			throw Error('Detected cyclical dependency: '
+				+ JSON.stringify(graph));
 		}
 
 		// For each node with zero dependencies...
